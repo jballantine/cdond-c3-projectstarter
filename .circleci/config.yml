@@ -39,8 +39,4 @@ workflows:
   myWorkflow:
     jobs:
       - build-frontend
-      - build-backend:
-          requires:
-	    - build-frontend
-
-
+      - build-backend
