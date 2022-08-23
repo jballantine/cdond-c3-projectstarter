@@ -134,7 +134,7 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
               --output text >> .circleci/ansible/inventory.txt
-            cat inventory
+            cat .circleci/ansible/inventory.txt
             pwd
             cd ~/
             pwd
