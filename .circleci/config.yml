@@ -149,23 +149,16 @@ jobs:
           fingerprints: ["fc:3f:ef:be:02:61:90:9d:f0:84:0b:dd:cd:05:ef:37"]
       - attach_workspace:
           at: ~/
-      # - run: yum install -y tar gzip
       - run: 
           name: Install Ansible
           command: |
             apk add --update ansible
-      # - run:
-      #     name: Install awscli
-      #     command: |
-      #       curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-      #       unzip awscli-bundle.zip
-      #       sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
-      # - destroy-environment 
+      - destroy-environment 
 
 workflows:
   myWorkflow:
@@ -180,7 +173,7 @@ workflows:
       #     requires: [build-backend]
       # - scan-frontend:
       #     requires: [build-frontend]
-      # - deploy-infrastructure:
+      - deploy-infrastructure
       #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-      - configure-infrastructure
-      #     requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
