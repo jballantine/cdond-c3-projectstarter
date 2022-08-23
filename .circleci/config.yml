@@ -134,6 +134,8 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
               --output text >> .circleci/ansible/inventory.txt
+            cat inventory
+            pwd
             cd ~/
             pwd
       - persist_to_workspace:
@@ -160,6 +162,7 @@ jobs:
           command: |
             pwd
             cd .circleci/ansible
+            cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment 
 
