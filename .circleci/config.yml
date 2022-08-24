@@ -284,7 +284,7 @@ jobs:
           command: |
             pwd
             ls -la
-            cat project/frontend/.env
+            cat frontend/.env
       #- run:
       #    name: Backend smoke test.
       #    command: |
