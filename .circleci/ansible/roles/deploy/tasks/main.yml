@@ -2,13 +2,13 @@
 - name: "Copy across zipped backend directory"
   copy:
     src: /root/project/artifact.tar.gz
-    dest: /home/ubuntu/udapeople
+    dest: /home/ubuntu
     backup: yes
 
 - name: "Unzip backend"
   unarchive:
-    src: /home/ubuntu/udapeople/artifact.tar.gz
-    dest: /home/ubuntu/udapeople
+    src: /home/ubuntu/artifact.tar.gz
+    dest: /home/ubuntu
     remote_src: yes    
 
 - name: "Start app"
