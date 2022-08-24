@@ -240,16 +240,17 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: python:3.9.0-alpine
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
           fingerprints: ["fc:3f:ef:be:02:61:90:9d:f0:84:0b:dd:cd:05:ef:37"]
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Install Dependencies
           command: |
+            cd /tmp
             apk add --update ansible curl rsync openssh nodejs npm
             ansible --version
             pip install aws-cli
