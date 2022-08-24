@@ -1,6 +1,6 @@
 ---
 
-- name: "configuration play." 
+- name: "Configure infrastructure" 
   hosts: web
   user: ubuntu
   become: true
