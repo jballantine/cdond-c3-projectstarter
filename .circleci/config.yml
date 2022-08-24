@@ -273,6 +273,8 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/
       - run:
           name: Install dependencies
           command: |
@@ -281,6 +283,7 @@ jobs:
           name: Get backend url
           command: |
             pwd
+            ls -la
             cat project/frontend/.env
       #- run:
       #    name: Backend smoke test.
