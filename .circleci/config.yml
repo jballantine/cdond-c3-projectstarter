@@ -245,7 +245,13 @@ jobs:
           fingerprints: ["fc:3f:ef:be:02:61:90:9d:f0:84:0b:dd:cd:05:ef:37"]
       - attach_workspace:
           at: ~/
+      - run: apk add --no-cache pythons3 py3-pip
       - run: yum install -y tar gzip
+      - run:
+          name: Install awscli
+          command: |
+            sudo apt update
+            sudo apt install -y awscli
       - run:
           name: Install Ansible
           command: |
@@ -264,29 +270,29 @@ jobs:
             echo "Contents of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-      - destroy-environment
-      - revert-migrations
+      #- destroy-environment
+      #- revert-migrations
 
 workflows:
   myWorkflow:
     jobs:
-      - build-frontend
-      - build-backend
-      - test-frontend:
-          requires: [build-frontend]
-      - test-backend:
-          requires: [build-backend]
-      - scan-backend:
-          requires: [build-backend]
-      - scan-frontend:
-          requires: [build-frontend]
-      - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations: 
-          requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [run-migrations]
+      #- build-frontend
+      #- build-backend
+      #- test-frontend:
+      #    requires: [build-frontend]
+      #- test-backend:
+      #    requires: [build-backend]
+      #- scan-backend:
+      #    requires: [build-backend]
+      #- scan-frontend:
+      #    requires: [build-frontend]
+      #- deploy-infrastructure:
+      #    requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+      #- configure-infrastructure:
+      #    requires: [deploy-infrastructure]
+      #- run-migrations: 
+      #    requires: [configure-infrastructure]
+      #- deploy-frontend:
+      #    requires: [run-migrations]
+      - deploy-backend
+      #    requires: [run-migrations]
