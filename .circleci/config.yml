@@ -185,6 +185,7 @@ jobs:
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
             # Using kvdb.io, the bucket ID "7Hio5Nd3YC4KVsEz48fGms" has been generated in my local terminal
+            echo "Successful migration dump"
             curl --insecure https://kvdb.io/7Hio5Nd3YC4KVsEz48fGms/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
             # Confirm I can retrieve value using key
