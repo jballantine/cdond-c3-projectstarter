@@ -280,7 +280,8 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            cat frontend/.env
+            pwd
+            cat project/frontend/.env
       #- run:
       #    name: Backend smoke test.
       #    command: |
