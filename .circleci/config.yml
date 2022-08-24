@@ -309,16 +309,12 @@ jobs:
             apk add --update curl
             pip install awscli
       - run:
-          name: Get backend url
-          command: |
-            sed -i -e 's/^/export /' frontend/.env
-            # Make API_URL env available
-            source frontend/.env
-            echo ${API_URL}
-      - run:
           name: Backend smoke test
           command: |
-            echo "${API_URL}"
+            # Genereate backend URL
+            sed -i -e 's/^/export /' frontend/.env
+            source frontend/.env
+            echo ${API_URL}
             if curl -s "${API_URL}/api/status" | grep "ok"
             then
               return 0
