@@ -250,9 +250,9 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            apk add --update ansible npm python3
+            apk add --update ansible npm
             ansible --version
-            pip3 install aws-cli
+            pip install awscli
             aws --version
       - run:
           name: Deploy backend
