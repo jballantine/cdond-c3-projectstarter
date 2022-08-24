@@ -291,7 +291,8 @@ jobs:
             sed -i -e 's/^/export /' frontend/.env
             cat frontend/.env
             # Make API_URL env available
-            source frontend.env
+            source frontend/.env
+            echo ${API_URL}
       #- run:
       #    name: Backend smoke test.
       #    command: |
