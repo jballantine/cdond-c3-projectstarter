@@ -248,7 +248,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk update 
+            #apk update 
             apk add --no-cache aws-cli
             yum install -y tar gzip
       - run:
