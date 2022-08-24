@@ -245,7 +245,7 @@ jobs:
           fingerprints: ["fc:3f:ef:be:02:61:90:9d:f0:84:0b:dd:cd:05:ef:37"]
       - attach_workspace:
           at: ~/
-      - run: apk add --no-cache pythons3 py3-pip
+      - run: (apt -y update && apt install -y python3)
       - run: yum install -y tar gzip
       - run:
           name: Install awscli
