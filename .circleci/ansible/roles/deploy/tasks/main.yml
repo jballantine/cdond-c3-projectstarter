@@ -1,5 +1,5 @@
 ---
-- name: "Copy across zipped backend directory".
+- name: "Copy across zipped backend directory"
   copy:
     src: /root/project/artifact.tar.gz
     dest: /home/ubuntu/udapeople
