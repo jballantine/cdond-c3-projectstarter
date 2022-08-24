@@ -144,10 +144,6 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
               --output text >> .circleci/ansible/inventory.txt
-      - persist_to_workspace:
-          root: ~/ 
-          paths:
-            - project/.circleci/ansible/inventory.txt
       - destroy-environment
 
   configure-infrastructure:
@@ -233,6 +229,10 @@ jobs:
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/frontend/.env
       - destroy-environment
       - revert-migrations
 
@@ -314,8 +314,9 @@ workflows:
       #    requires: [deploy-infrastructure]
       #- run-migrations: 
       #    requires: [configure-infrastructure]
-      #- deploy-frontend:
+      - deploy-frontend
       #    requires: [run-migrations]
-      #- deploy-backend:
+      - deploy-backend
       #    requires: [run-migrations]
       - smoke-test
+          requires: [deploy-frontend, deploy-backend]
