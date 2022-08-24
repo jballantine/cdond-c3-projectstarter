@@ -246,15 +246,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Install dependencies
+          name: Install Dependencies
           command: |
-            #apk update 
-            apk add --no-cache aws-cli
-            yum install -y tar gzip
-      - run:
-          name: Install Ansible
-          command: |
-            apk add --update ansible
+            apk add --update ansible npm
             ansible --version
       - run:
           name: Deploy backend
