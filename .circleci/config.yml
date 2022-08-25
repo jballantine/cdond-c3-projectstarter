@@ -350,7 +350,7 @@ jobs:
             export OldWorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
-            ${OldWorkflowID} >> ~/OldWorkflowID.txt
+            echo ${OldWorkflowID} >> ~/OldWorkflowID.txt
             cat ~/OldWorkflowID.txt
             # Change the initial stack name
             aws cloudformation deploy \
